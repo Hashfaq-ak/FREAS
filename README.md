@@ -1,0 +1,70 @@
+FREAS (Face Recognition Attendance System)
+FREAS is a Django-based application designed for employee attendance tracking using face recognition technology. The system records the in-time and out-time of employees and calculates their daily and monthly salaries based on this data.
+
+Table of Contents
+Introduction
+Features
+Installation
+Usage
+Contact
+Introduction
+FREAS (Face Recognition Attendance System) leverages the power of face recognition to streamline the process of tracking employee attendance. Employees can mark their in-time and out-time through the system, and the application automatically calculates their daily and monthly salaries based on the recorded attendance.
+
+Features
+Face recognition for accurate attendance marking
+Tracks in-time and out-time of employees
+Calculates daily and monthly salaries
+User-friendly interface for employees and administrators
+Secure and scalable architecture using Django framework
+Installation
+To get started with FREAS, follow these steps:
+
+Clone the repository:
+
+sh
+Copy code
+git clone https://github.com/yourusername/FREAS.git
+Navigate to the project directory:
+
+sh
+Copy code
+cd FREAS
+Create a virtual environment and activate it:
+
+sh
+Copy code
+python -m venv env
+source env/bin/activate  # On Windows use `env\Scripts\activate`
+Install the dependencies:
+
+sh
+Copy code
+pip install django opencv-python numpy dlib
+Apply database migrations:
+
+sh
+Copy code
+python manage.py migrate
+Run the development server:
+
+sh
+Copy code
+python manage.py runserver
+Access the application in your browser at:
+
+arduino
+Copy code
+http://127.0.0.1:8000/
+Usage
+Mark Attendance
+Employees can log in to the system.
+Use the face recognition feature to mark in-time and out-time.
+The system will automatically record these times and calculate the salary.
+Administrator Functions
+Manage employee records.
+View attendance logs.
+Oversee salary calculations.
+Contact
+Your Name - @_ashp.u - muhammedhashfaq.ak@gmail.com
+
+Project Link: https://github.com/Hashfaq-ak/FREAS
