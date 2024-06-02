@@ -22,38 +22,38 @@ To get started with FREAS, follow these steps:
 Clone the repository:
 
  
-Copy code
+ 
 git clone https://github.com/yourusername/FREAS.git
 Navigate to the project directory:
 
  
-Copy code
+ 
 cd FREAS
 Create a virtual environment and activate it:
 
  
-Copy code
+ 
 python -m venv env
 source env/bin/activate  # On Windows use `env\Scripts\activate`
 Install the dependencies:
 
  
-Copy code
+ 
 pip install django opencv-python numpy dlib
 Apply database migrations:
 
  
-Copy code
+ 
 python manage.py migrate
 Run the development server:
 
  
-Copy code
+ 
 python manage.py runserver
 Access the application in your browser at:
 
 arduino
-Copy code
+ 
 http://127.0.0.1:8000/
 Usage
 Mark Attendance
@@ -65,6 +65,6 @@ Manage employee records.
 View attendance logs.
 Oversee salary calculations.
 Contact
-Your Name - @_a p.u - muhammedha faq.ak@gmail.com
+Your Name - @_ashp.u - muhammedhashfaq.ak@gmail.com
 
-Project Link: https://github.com/Ha faq-ak/FREAS
+Project Link: https://github.com/Hashfaq-ak/FREAS
