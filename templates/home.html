@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h1 class="text-center">Attendance Management System</h1><br><br><br>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+                <a href="{% url 'admin_login' %}">
+                    <img src="{% static 'images/admin.jpg' %}" alt="Admin" class="img-fluid" style="max-width: 200px; height: auto;">
+                </a><BR><strong>ADMIN</strong>
+
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="{% url 'attendance' %}">
+                    <img src="{% static 'images/markin.png' %}" alt="Mark Attendance" class="img-fluid" style="max-width: 200px; height: auto;">
+                </a><BR><strong>MARK IN</strong>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="{% url 'attendance_out' %}">
+                    <img src="{% static 'images/exiticon.png' %}" alt="Out" class="img-fluid" style="max-width: 200px; height: auto;">
+                </a><BR><strong>MARK OUT </strong>
+            </div>
+        </div>
+    </div>
+{% endblock %}

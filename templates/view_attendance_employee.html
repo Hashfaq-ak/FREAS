@@ -1,0 +1,102 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+  body{
+    background: url('{% static "recognition/img/tryr.jpg"%}') no-repeat center center fixed;
+    background-size: cover;
+  }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'reports' %}"><b>Dashboard</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'view-attendance-employee' %}"><b>By Employee  <span class="sr-only">(current)</span></b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'view-attendance-date' %}"><b>By Date</b></a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'admin_home' %}"><b>Admin</b></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" align="center">
+  <div style="width:400px;">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4"> Select Username And Duration </legend>
+        {{form| crispy}}
+      </fieldset>
+
+      <div class="form-group">
+        <button class="btn btn-outline-info" type="submit"> Submit</button>
+      </div>
+    </form>
+  </div>
+
+  {% if qs %}
+  <table class="table" style="margin-top: 5em;">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Employee</th>
+        <th scope="col">Time in</th>
+        <th scope="col">Time out</th>
+        <th scope="col">Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in qs %}
+      <tr>
+        <td>{{ item.date }}</td>
+        <td>{{ item.employee }}</td>
+        {% if item.start_time %}
+        <td>{{ item.start_time }}</td>
+        {% else %}
+        <td>-</td>
+        {% endif %}
+        {% if item.end_time %}
+        <td>{{ item.end_time }}</td>
+        {% else %}
+        <td>-</td>
+        {% endif %}
+        <td>{{ item.hours }}</td>
+        <td>{{ item.break_hours }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% endif %}
+
+{% if messages %}
+<div class="alert alert-{{ messages.tags }}" role="alert">
+  <div class="alert alert-danger" role="alert">
+  <strong>No records found for this employee within the specified date range.</strong>
+</div>
+</div>
+{% endif %}
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then

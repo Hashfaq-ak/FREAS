@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* off-white background color */
+        }
+        .navbar-custom {
+            background-color: #d3d3d3 !important; /* light gray navbar */
+        }
+        .card-custom {
+            width: 20em;
+            margin: 5em 1em;
+            text-align: center;
+            color: white;
+        }
+        .card-custom-green {
+            background-color: #338044 !important; /* green card background */
+        }
+        .card-custom-purple {
+            background-color: #80335b !important; /* purple card background */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom">
+    <a class="navbar-brand" href="{% url 'reports' %}"><b>Attendance Dashboard</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'view-attendance-employee' %}"><b>By Employee</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'view-attendance-date' %}"><b>By Date</b></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'admin_home' %}"><b>Admin</b></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card-body">
+        <h2 class="text-center">Today's Statistics</h2>
+        <div class="row justify-content-center">
+            <div class="card card-custom card-custom-green">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Total Number Of Employees</b></h5>
+                    <p class="card-text" style="padding-top: 1em; font-size: 28px;"><b>{{ total_num_of_emp }}</b></p>
+                </div>
+            </div>
+            <div class="card card-custom card-custom-purple">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Employees present today</b></h5>
+                    <p class="card-text" style="padding-top: 1em; font-size: 28px;"><b>{{ emp_present_today }}</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

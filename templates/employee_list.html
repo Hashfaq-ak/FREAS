@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Employees List</h2>
+<table class="table mt-5">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Employee</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for employee in employees %}
+      <tr>
+        <td>{{ employee.name }}</td>
+        <td> <!-- Actions column -->
+                    <button class="btn btn-danger" ><a href="{% url 'edit_employee' employee.employee_id %}">Edit</a></button>
+                    <form action="{% url 'delete_employee' employee.employee_id %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

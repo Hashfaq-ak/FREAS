@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Attendance Capture</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Real-time Attendance Capture</h1>
+    <div id="camera-feed"></div>
+    <button id="capture-btn">Capture & Mark Attendance</button>
+
+    <!-- Script to handle webcam capture and attendance marking -->
+
+ <!-- Script to handle webcam capture and attendance marking -->
+<script>
+    $(document).ready(function () {
+        // Initialize the camera feed
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                var video = document.createElement('video');
+                video.srcObject = stream;
+                video.play();
+                document.getElementById('camera-feed').appendChild(video);
+            })
+            .catch(function (err) {
+                console.log("An error occurred: " + err);
+            });
+
+        // Capture and mark attendance when the button is clicked
+        $('#capture-btn').click(function () {
+            // Get the canvas element
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+
+            // Get the video element
+            var video = document.querySelector('video');
+
+            // Set the canvas dimensions to match the video dimensions
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+
+            // Draw the current frame from the video onto the canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Get the image data from the canvas
+            var imageData = canvas.toDataURL('image/jpeg');
+
+            // Get CSRF token
+            var csrftoken = getCookie('csrftoken');
+
+            // Send the image data to the server to mark attendance
+            $.ajax({
+                type: 'POST',
+                url: '/mark_attendance/',
+                data: {
+                    'employee_photo': imageData
+                },
+                headers: { "X-CSRFToken": csrftoken }, // Include CSRF token in headers
+                success: function (response) {
+                    alert("attendance taken"); // Display the response message
+                    location.reload(); // Reload the page after marking attendance
+                },
+                error: function (xhr, status, error) {
+                    console.log("An error occurred: " + error);
+                    alert("Error occurred while marking attendance: " + xhr.responseText); // Display specific error message
+                }
+            });
+        });
+
+        // Function to get CSRF cookie value
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}
