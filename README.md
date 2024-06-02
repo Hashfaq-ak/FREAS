@@ -21,33 +21,33 @@ To get started with FREAS, follow these steps:
 
 Clone the repository:
 
-sh
+ 
 Copy code
 git clone https://github.com/yourusername/FREAS.git
 Navigate to the project directory:
 
-sh
+ 
 Copy code
 cd FREAS
 Create a virtual environment and activate it:
 
-sh
+ 
 Copy code
 python -m venv env
 source env/bin/activate  # On Windows use `env\Scripts\activate`
 Install the dependencies:
 
-sh
+ 
 Copy code
 pip install django opencv-python numpy dlib
 Apply database migrations:
 
-sh
+ 
 Copy code
 python manage.py migrate
 Run the development server:
 
-sh
+ 
 Copy code
 python manage.py runserver
 Access the application in your browser at:
@@ -65,6 +65,6 @@ Manage employee records.
 View attendance logs.
 Oversee salary calculations.
 Contact
-Your Name - @_ashp.u - muhammedhashfaq.ak@gmail.com
+Your Name - @_a p.u - muhammedha faq.ak@gmail.com
 
-Project Link: https://github.com/Hashfaq-ak/FREAS
+Project Link: https://github.com/Ha faq-ak/FREAS
